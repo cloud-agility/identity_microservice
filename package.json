@@ -4,7 +4,7 @@
   "description": "Generic identity microservice",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
