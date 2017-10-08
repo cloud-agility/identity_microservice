@@ -1,0 +1,23 @@
+{
+  "name": "identity_microservice",
+  "version": "1.0.0",
+  "description": "Generic identity microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-agility/identity_microservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cloud-agility/identity_microservice/issues"
+  },
+  "homepage": "https://github.com/cloud-agility/identity_microservice#readme",
+  "dependencies": {
+    "express": "^4.16.1",
+    "mocha": "^4.0.1"
+  }
+}
