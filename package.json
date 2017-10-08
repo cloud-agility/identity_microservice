@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/cloud-agility/identity_microservice/issues"
   },
-  "homepage": "https://github.com/cloud-agility/identity_microservice#readme"
+  "homepage": "https://github.com/cloud-agility/identity_microservice#readme",
+  "dependencies": {
+    "express": "^4.16.1",
+    "mocha": "^4.0.1"
+  }
 }
