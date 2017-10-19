@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: identity_deployment
+spec:
+  replicas: 1
+  minReadySeconds: 1
+  template:
+    metadata:
+      labels:
+        app: identity
+    spec:
+      containers:
+      - name: identity-container
+        image: mycluster.icp:8500/identity:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3030
