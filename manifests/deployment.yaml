@@ -8,7 +8,7 @@ spec:
   template:
     metadata:
       labels:
-        app: identity
+        application: identity
     spec:
       containers:
       - name: identity-container
