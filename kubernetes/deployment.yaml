@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: identity-deployment
+  name: node-deployment
 spec:
   replicas: 1
   minReadySeconds: 1
   template:
     metadata:
       labels:
-        application: identity
+        application: node-sample
     spec:
       containers:
-      - name: identity-container
-        image: cloudagility/identity_microservice:latest
+      - name: node-container
+        image: cloudagility/node_sample:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3030
