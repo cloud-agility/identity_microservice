@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: node-deployment
+spec:
+  replicas: 1
+  minReadySeconds: 1
+  template:
+    metadata:
+      labels:
+        application: node-sample
+    spec:
+      containers:
+      - name: node-container
+        image: cloudagility/node_sample:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3030
