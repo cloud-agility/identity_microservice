@@ -2,10 +2,10 @@
   "name": "identity_microservice",
   "version": "1.0.0",
   "description": "Generic identity microservice",
-  "main": "index.js",
+  "main": "hello.js",
   "scripts": {
-    "test": "mocha",
-    "start": "node index.js"
+    "test": "mocha --exit",
+    "start": "node hello.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/cloud-agility/identity_microservice#readme",
   "dependencies": {
+    "body-parser": "^1.15.1",
     "express": "^4.16.2",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1"
   }
 }
