@@ -1,7 +1,10 @@
 MAJOR			 	 = 0.1
 MINOR		 		 =  1
-#VERSION			 = $(MAJOR)-$(MINOR)
-VERSION			 = local
+ifdef TRAVIS_PULL_REQUEST_SHA
+	VERSION		 = $(TRAVIS_PULL_REQUEST_SHA)
+else
+	VERSION			 = local
+endif
 DOCKER_IMAGE = cloudagility/node_sample:$(VERSION)
 RUN_BUILD    = docker build
 RUN_TEST     = docker run -it --rm
@@ -13,7 +16,7 @@ SERVICE			 = kubernetes/service.yaml
 PUSH 				 = docker push
 
 .PHONY: all
-all: build test 
+all: build test
 
 .PHONY: build
 build: Dockerfile
