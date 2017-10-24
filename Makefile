@@ -1,19 +1,18 @@
-DOCKER_IMAGE = hello
+DOCKER_IMAGE = sample/hello
+RUN_BUILD    = docker build
+RUN_TEST     = docker run -it --rm
+TEST_CMD     = npm test
+TEST_DIR     = test
 
 .PHONY: all
 all: build test
 
 .PHONY: build
-build: 
-	docker build -t $(DOCKER_IMAGE) .
-
-.PHONY: install
-install: package-lock.json
-
-package-lock.json:
-	docker run --rm -v$(CURDIR):/mnt -w /mnt node npm install
+build: Dockerfile
+	echo ">> building app"
+	$(RUN_BUILD) -t $(DOCKER_IMAGE) .
 
 .PHONY: test
-test: install
+test:
 	echo ">> running tests"
-	docker run -it --rm -v$(CURDIR):/mnt -w /mnt node npm test
+	$(RUN_TEST) -v$(CURDIR)/$(TEST_DIR):/src/$(TEST_DIR) -w /src $(DOCKER_IMAGE) $(TEST_CMD)

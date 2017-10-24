@@ -1,5 +1,7 @@
-language: node_js
-node_js:
-  - "7"
+# This is the way to use make with docker
+sudo: required
+services:
+  - docker
 script:
-  - npm test
+# Run all tests in this directory recursively
+  - make all
