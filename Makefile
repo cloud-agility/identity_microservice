@@ -1,10 +1,10 @@
 MAJOR			 	 = 0.1
 MINOR		 		 =  1
-#ifdef TRAVIS_PULL_REQUEST_BRANCH
-	VERSION		 = ${TRAVIS_PULL_REQUEST_BRANCH}
-#else
+ifdef TRAVIS_PULL_REQUEST_BRANCH
+	VERSION		 = $(TRAVIS_PULL_REQUEST_BRANCH)
+else
 	VERSION			 = local
-#endif
+endif
 DOCKER_IMAGE = cloudagility/node_sample:$(VERSION)
 RUN_BUILD    = docker build
 RUN_TEST     = docker run -it --rm
