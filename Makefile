@@ -1,6 +1,6 @@
 RELEASE		 	 = 0.1
-ifdef TRAVIS_PULL_REQUEST_SHA
-	VERSION		 = $(TRAVIS_PULL_REQUEST_SHA)
+ifdef TRAVIS_COMMIT
+	VERSION		 = $(TRAVIS_COMMIT)
 else
 	VERSION			 = local
 endif
@@ -41,8 +41,8 @@ deploy: push
 ifeq ($(VERSION),local)
 	echo ">> deploying app to local kubernetes cluster"
 	#$(PUSH) $(DOCKER_IMAGE)
-	$(RUN_DEPLOY) -f $(DEPLOYMENT)
-	$(RUN_DEPLOY) -f $(SERVICE)
+	#$(RUN_DEPLOY) -f $(DEPLOYMENT)
+	#$(RUN_DEPLOY) -f $(SERVICE)
 else
 	echo ">> deploying app $(VERSION) to production (TODO)"
 endif
