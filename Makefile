@@ -13,7 +13,7 @@ SERVICE			 = kubernetes/service.yaml
 PUSH 				 = docker push
 
 .PHONY: all
-all: build test deploy
+all: build test 
 
 .PHONY: build
 build: Dockerfile
