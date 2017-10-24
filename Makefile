@@ -1,7 +1,6 @@
-MAJOR			 	 = 0.1
-MINOR		 		 =  1
-ifdef TRAVIS_PULL_REQUEST_SHA
-	VERSION		 = $(TRAVIS_PULL_REQUEST_SHA)
+RELEASE		 	 = 0.1
+ifdef TRAVIS_COMMIT
+	VERSION		 = $(TRAVIS_COMMIT)
 else
 	VERSION			 = local
 endif
@@ -16,7 +15,7 @@ SERVICE			 = kubernetes/service.yaml
 PUSH 				 = docker push
 
 .PHONY: all
-all: build test
+all: build test deploy
 
 .PHONY: build
 build: Dockerfile
@@ -30,11 +29,20 @@ test:
 
 .PHONY: push
 push:
+ifeq ($(VERSION),local)
+	echo ">> using local registry"
+else
 	echo ">> pushing image to docker hub $(VERSION)"
-	$(PUSH) $(DOCKER_IMAGE)
+	#$(PUSH) $(DOCKER_IMAGE)
+endif
 
 .PHONY: deploy
 deploy: push
-	echo ">> deploying app $(VERSION)"
-	$(RUN_DEPLOY) -f $(DEPLOYMENT)
-	$(RUN_DEPLOY) -f $(SERVICE)
+ifeq ($(VERSION),local)
+	echo ">> deploying app to local kubernetes cluster"
+	#$(PUSH) $(DOCKER_IMAGE)
+	#$(RUN_DEPLOY) -f $(DEPLOYMENT)
+	#$(RUN_DEPLOY) -f $(SERVICE)
+else
+	echo ">> deploying app $(VERSION) to production (TODO)"
+endif
