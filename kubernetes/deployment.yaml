@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: node-container
-        image: cloudagility/node_sample:latest
+        image: cloudagility/node_sample:local
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3030
