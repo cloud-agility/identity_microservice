@@ -13,7 +13,7 @@ describe('Hello Tests', () => {
           .get('/')
           .end( (err, res) => {
               res.should.have.status(200);
-              res.body.should.have.property('message').eql('Hello World!');
+              res.body.should.have.property('message').eql("Hello World!");
               done();
           });
     });
