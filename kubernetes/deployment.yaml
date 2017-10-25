@@ -12,7 +12,8 @@ spec:
     spec:
       containers:
       - name: node-container
-        image: cloudagility/node_sample:local
+        #image: mycluster.icp:8500/default/node_sample:local
+        image: localhost:5000/node_sample:local
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3030

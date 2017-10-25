@@ -8,7 +8,7 @@ spec:
   type: NodePort
   ports:
   - port: 3030
-    nodePort: 30001
+    nodePort: 30030
     protocol: TCP
   selector:
     application: node-sample
