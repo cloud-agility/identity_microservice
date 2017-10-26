@@ -3,7 +3,7 @@ sudo: required
 services:
   - docker
 env:
-  - if [ "$TRAVIS_TAG" == '' ]; then
+  - if [[ "$TRAVIS_TAG" == '' ]]; then
       TAGS=$TRAVIS_BRANCH;
     else
       TAGS=$TRAVIS_TAG;
@@ -13,6 +13,6 @@ script:
   - make test
 
 after_success:
-  - if [ "$TRAVIS_TAG" != '' ]; then
+  - if [[ "$TRAVIS_TAG" != '' ]]; then
       make deploy;
     fi
