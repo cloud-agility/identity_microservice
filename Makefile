@@ -1,18 +1,17 @@
 NAME		= node_sample
-RELEASE		= 0.1
-ifdef TRAVIS_COMMIT
-	TAGS	= $(TRAVIS_COMMIT)
-else
+ifndef TAGS
 	TAGS	= local
+else
+	TAGS :=$(filter-out /,$(TAGS))
 endif
 DOCKER_IMAGE	= $(NAME):$(TAGS)
 DEPLOYMENT	= kubernetes/deployment.yaml
 SERVICE		= kubernetes/service.yaml
 
-#REGISTRY	= mycluster.icp:8500/default
 #LOCAL		= icp
+#REGISTRY	= mycluster.icp:8500/default
 LOCAL		= minikube
-REGISTRY	= localhost:5000
+REGISTRY	= 192.168.99.100:32767
 
 # COMMAND DEFINITIONS
 BUILD		= docker build -t
@@ -21,11 +20,12 @@ TEST_CMD	= npm test
 TEST_DIR	= test
 DEPLOY		= kubectl apply
 DEPLOY_OPTS = --validate=false
+LOGIN		= docker login
 PUSH		= docker push
 TAG		= docker tag
 
 .PHONY: all
-all: build test deploy
+all: build test
 
 .PHONY: build
 build: Dockerfile
@@ -45,8 +45,8 @@ ifeq ($(TAGS),local)
 	$(PUSH) $(REGISTRY)/$(DOCKER_IMAGE)
 else
 	echo ">> pushing image to docker hub as $(DOCKER_IMAGE)"
-	# docker login
-	#$(PUSH) $(DOCKER_IMAGE)
+	$(LOGIN) -u="$(DOCKER_USERNAME)" -p="$(DOCKER_PASSWORD)"
+	$(PUSH) $(DOCKER_IMAGE)
 endif
 
 .PHONY: deploy

@@ -2,6 +2,13 @@
 sudo: required
 services:
   - docker
+env:
+  - TAGS=$TRAVIS_BRANCH;
 script:
 # Run all tests in this directory recursively
   - make all
+
+after_success:
+  - if [[ "$TRAVIS_TAG" != '' ]]; then
+      make deploy;
+    fi
