@@ -19,7 +19,6 @@ TEST		= docker run -it --rm
 TEST_CMD	= npm test
 TEST_DIR	= test
 DEPLOY		= kubectl apply
-DEPLOY_OPTS = --validate=false
 LOGIN		= docker login
 PUSH		= docker push
 TAG		= docker tag
@@ -53,8 +52,8 @@ endif
 deploy: push
 ifeq ($(TAGS),local)
 	echo ">> deploying app to local $(LOCAL) cluster"
-	$(DEPLOY) -f $(DEPLOYMENT) $(DEPLOY_OPTS)
-	$(DEPLOY) -f $(SERVICE) $(DEPLOY_OPTS)
+	$(DEPLOY) -f $(DEPLOYMENT) 
+	$(DEPLOY) -f $(SERVICE) 
 else
 	echo ">> deploying app $(TAGS) to production (TODO)"
 	#$(DEPLOY) -f $(DEPLOYMENT)
