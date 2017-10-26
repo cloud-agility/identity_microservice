@@ -6,7 +6,7 @@ env:
   - TAGS=$TRAVIS_BRANCH;
 script:
 # Run all tests in this directory recursively
-  - make test
+  - make all
 
 after_success:
   - if [[ "$TRAVIS_TAG" != '' ]]; then
