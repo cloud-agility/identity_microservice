@@ -1,6 +1,9 @@
 NAME		= node_sample
 ifndef TAGS
 	TAGS	= local
+else
+	TMP := $(TAGS)
+	TAGS = $(filter-out /,$(TMP))
 endif
 DOCKER_IMAGE	= $(NAME):$(TAGS)
 DEPLOYMENT	= kubernetes/deployment.yaml
