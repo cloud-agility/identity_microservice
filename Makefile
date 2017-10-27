@@ -18,6 +18,7 @@ BUILD		= docker build -t
 TEST		= docker run -it --rm
 TEST_CMD	= npm test
 TEST_DIR	= test
+VOLUME		= -v$(CURDIR)/$(TEST_DIR):/src/$(TEST_DIR)
 DEPLOY		= kubectl apply
 LOGIN		= docker login
 PUSH		= docker push
@@ -34,7 +35,7 @@ build: Dockerfile
 .PHONY: test
 test:
 	echo ">> running tests on $(DOCKER_IMAGE)"
-	$(TEST) -v$(CURDIR)/$(TEST_DIR):/src/$(TEST_DIR) -w /src $(DOCKER_IMAGE) $(TEST_CMD)
+	$(TEST) $(VOLUME) $(DOCKER_IMAGE) $(TEST_CMD)
 
 .PHONY: push
 push:
