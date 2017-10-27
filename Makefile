@@ -53,10 +53,19 @@ endif
 deploy: push
 ifeq ($(TAGS),local)
 	echo ">> deploying app to local $(LOCAL) cluster"
-	$(DEPLOY) -f $(DEPLOYMENT) 
-	$(DEPLOY) -f $(SERVICE) 
+	$(DEPLOY) -f $(DEPLOYMENT)
+	$(DEPLOY) -f $(SERVICE)
 else
 	echo ">> deploying app $(TAGS) to production (TODO)"
 	#$(DEPLOY) -f $(DEPLOYMENT)
 	#$(DEPLOY) -f $(SERVICE)
 endif
+
+.PHONY: helm
+helm: push
+	echo ">> Use helm to install $(NAME)-chart"
+	# Do something like this:
+	# helm lint $(NAME)-chart
+	# helm package $(NAME)-chart
+	# Override the values.yaml with the target
+	# helm install $(NAME)-chart --set image.repository=$(REGISTRY)
