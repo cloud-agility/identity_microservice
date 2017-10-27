@@ -1,0 +1,17 @@
+replicaCount: 1
+minReadySeconds: 1
+image:
+  name: node_sample
+  repository: mycluster.icp:8500/default
+  tag: local
+  pullPolicy: Always
+service:
+  name: node-service
+  type: NodePort
+  externalPort: 30030
+  internalPort: 3030
+  protocol: TCP
+deployment:
+  name: node-deployment
+pod:
+  name: node-container
