@@ -15,7 +15,7 @@ REGISTRY	= 192.168.99.100:32767
 
 # COMMAND DEFINITIONS
 BUILD		= docker build -t
-TEST		= docker run -it --rm
+TEST		= docker run --rm
 TEST_CMD	= npm test
 TEST_DIR	= test
 VOLUME		= -v$(CURDIR)/$(TEST_DIR):/src/$(TEST_DIR)
