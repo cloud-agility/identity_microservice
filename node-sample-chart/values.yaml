@@ -8,7 +8,7 @@ image:
 service:
   name: node-service
   type: NodePort
-  externalPort: 30030
+  externalPort: 30130
   internalPort: 3030
   protocol: TCP
 deployment:
