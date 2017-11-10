@@ -5,16 +5,19 @@ services:
 # Map Travis env vars into our normalised Makefile vars
 env:
   - TAGS=$TRAVIS_BRANCH;
+  - UTILSVER=0.1.1
 
 # Get our utility functions for logging into the public cloud
 before_install:
-  - wget https://github.com/cloud-agility/utilities/archive/v0.1.1.tar.gz -O /tmp/utilities.tar.gz
+  - wget https://github.com/cloud-agility/utilities/archive/v$UTILSVER.tar.gz -O /tmp/utilities.tar.gz
   - tar -xvf /tmp/utilities.tar.gz
   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-  - mv kubectl utilities
-  - chmod +x utilities/kubectl
+  - mv kubectl utilities-$UTILSVER
+  - chmod +x utilities-$UTILSVER/kubectl
   - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-  - export PATH=$PATH:$PWD/utilities
+  - export PATH=$PATH:$PWD/utilities-$UTILSVER
+  - pwd
+  - ls -la
 
 # Run all tests in this directory recursively
 script:
