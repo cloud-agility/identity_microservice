@@ -63,7 +63,7 @@ namespace:
 	kubectl patch sa default -p '{"imagePullSecrets": [{"name": "$(REGISTRY_SECRET)"}]}' --namespace $(NAMESPACE)
 
 .PHONY: deploy
-deploy: push
+deploy: push namespace
 	echo ">> Use $(DEPLOY) to install $(NAME)-chart"
 	## Override the values.yaml with the target
 	$(DEPLOY) install $(NAME)-chart --set image.repository=$(REGISTRY) --namespace $(NAMESPACE) --name $(NAME) --wait
