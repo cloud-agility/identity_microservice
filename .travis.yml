@@ -4,8 +4,7 @@ services:
   - docker
 # Map Travis env vars into our normalised Makefile vars
 env:
-  - TAGS=$TRAVIS_BRANCH;
-  - UTILSVER=0.1.1
+  - TAGS=$TRAVIS_BRANCH; UTILSVER=0.1.1
 
 # Get our utility functions for logging into the public cloud
 before_install:
