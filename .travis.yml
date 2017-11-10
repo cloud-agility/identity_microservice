@@ -19,6 +19,7 @@ before_install:
 
 # Run all tests in this directory recursively
 script:
+  - login_public.sh
   - make all
 
 # If we are tagging the build as a release, push to prod
