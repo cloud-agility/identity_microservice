@@ -6,11 +6,11 @@ else
 endif
 DOCKER_IMAGE	= $(NAME):$(TAGS)
 
-REGISTRY	= mycluster.icp:8500/default
-REGISTRY_SECRET = admin.registrykey
+#REGISTRY	= mycluster.icp:8500/default
+#REGISTRY_SECRET = admin.registrykey
 
-#REGISTRY	= registry.eu-gb.bluemix.net/cloud_native_agility_staging
-#REGISTRY_SECRET = bluemix-default-secret
+REGISTRY	= registry.eu-gb.bluemix.net/cloud_native_agility_staging
+REGISTRY_SECRET = bluemix-default-secret
 
 #REGISTRY	= 192.168.99.100:32767
 #REGISTRY_SECRET =
