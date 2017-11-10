@@ -2,13 +2,23 @@
 sudo: required
 services:
   - docker
-
 # Map Travis env vars into our normalised Makefile vars
 env:
   - TAGS=$TRAVIS_BRANCH;
 
+# Get our utility functions for logging into the public cloud
+before_install:
+  - wget https://github.com/cloud-agility/utilities/archive/v0.1.1.tar.gz -O /tmp/utilities.tar.gz
+  - tar -xvf /tmp/utilities.tar.gz
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  - mv kubectl utilities
+  - chmod +x ./kubectl
+  - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+  - export PATH=$PATH:$PWD/utilities
+
 # Run all tests in this directory recursively
 script:
+  - login_public.sh
   - make all
 
 # If we are tagging the build as a release, push to prod
