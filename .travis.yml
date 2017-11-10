@@ -10,10 +10,11 @@ env:
 before_install:
   - wget https://github.com/cloud-agility/utilities/archive/v$UTILSVER.tar.gz -O /tmp/utilities.tar.gz
   - tar -xvf /tmp/utilities.tar.gz
-  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-  - mv kubectl utilities-$UTILSVER
-  - chmod +x utilities-$UTILSVER/kubectl
-  - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+#  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+#  - mv kubectl utilities-$UTILSVER
+#  - chmod +x utilities-$UTILSVER/kubectl
+#  - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+  - curl -sL https://ibm.biz/idt-installer | bash
   - export PATH=$PATH:$PWD/utilities-$UTILSVER
 
 # Run all tests in this directory recursively
