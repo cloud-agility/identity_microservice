@@ -20,8 +20,7 @@ before_install:
 # Run all tests in this directory recursively
 script:
   - login_public.sh
-  - make build
-  - make unittest
+  - make all
 
 # If we are tagging the build as a release, push to prod
 after_success:

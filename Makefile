@@ -40,7 +40,7 @@ build: Dockerfile
 	$(DEPLOY) package $(NAME)-chart
 
 .PHONY: unittest
-test:
+unittest:
 	echo ">> running tests on $(DOCKER_IMAGE)"
 	$(TEST) $(VOLUME) $(DOCKER_IMAGE) $(TEST_CMD)
 
