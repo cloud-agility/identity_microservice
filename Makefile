@@ -64,7 +64,7 @@ namespace:
 
 .PHONY: deploy
 deploy: push
-	echo ">> Use $DEPLOY to install $(NAME)-chart"
+	echo ">> Use $(DEPLOY) to install $(NAME)-chart"
 	## Override the values.yaml with the target
 	$(DEPLOY) install $(NAME)-chart --set image.repository=$(REGISTRY) --namespace $(NAMESPACE) --name $(NAME) --wait
 
