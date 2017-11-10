@@ -35,7 +35,7 @@ all: build unittest
 build: Dockerfile
 	echo ">> building app as $(DOCKER_IMAGE)"
 	$(BUILD) $(DOCKER_IMAGE) .
-	echo ">> packaging the $DEPLOY charts"
+	echo ">> packaging the $(DEPLOY) charts"
 	$(DEPLOY) lint $(NAME)-chart
 	$(DEPLOY) package $(NAME)-chart
 
