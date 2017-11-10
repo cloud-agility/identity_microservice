@@ -4,7 +4,7 @@ services:
   - docker
 # Map Travis env vars into our normalised Makefile vars
 env:
-  - TAGS=$TRAVIS_BRANCH; UTILSVER=0.1.1
+  - TAGS=$TRAVIS_BRANCH; UTILSVER=0.1.2
 
 # Get our utility functions for logging into the public cloud
 before_install:
@@ -15,8 +15,6 @@ before_install:
   - chmod +x utilities-$UTILSVER/kubectl
   - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
   - export PATH=$PATH:$PWD/utilities-$UTILSVER
-  - pwd
-  - ls -la
 
 # Run all tests in this directory recursively
 script:
