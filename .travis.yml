@@ -21,7 +21,7 @@ script:
   - login_public.sh
   - make all
 
-# If we are tagging the build as a release, push to prod
+# If we are tagging the build as a release, push to prod 
 after_success:
   - if [[ "$TRAVIS_TAG" != '' ]]; then
       make deploy;
