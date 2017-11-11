@@ -16,6 +16,7 @@ REGISTRY_SECRET = bluemix-default-secret
 #REGISTRY_SECRET =
 
 NAMESPACE = staging-$(TAGS)
+NAMESPACE :=$(subst .,-,$(NAMESPACE))
 
 # COMMAND DEFINITIONS
 BUILD		= docker build -t
