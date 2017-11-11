@@ -14,9 +14,12 @@ REGISTRY_SECRET = bluemix-default-secret
 
 #REGISTRY	= 192.168.99.100:32767
 #REGISTRY_SECRET =
-
-NAMESPACE = staging-$(TAGS)
-NAMESPACE :=$(subst .,-,$(NAMESPACE))
+ifndef RELEASE
+	NAMESPACE = staging-$(TAGS)
+	NAMESPACE :=$(subst .,-,$(NAMESPACE))
+else
+	NAMESPACE = production
+endif
 
 # COMMAND DEFINITIONS
 BUILD		= docker build -t
@@ -59,9 +62,11 @@ endif
 
 .PHONY: namespace
 namespace:
+ifneq ($(NAMESPACE,"production"))
 	kubectl create ns $(NAMESPACE)
 	kubectl get secret $(REGISTRY_SECRET) -o json --namespace default | sed 's/"namespace": "default"/"namespace": "$(NAMESPACE)"/g' | kubectl create -f -
 	kubectl patch sa default -p '{"imagePullSecrets": [{"name": "$(REGISTRY_SECRET)"}]}' --namespace $(NAMESPACE)
+endif
 
 .PHONY: deploy
 deploy: push namespace
