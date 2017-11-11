@@ -62,7 +62,7 @@ endif
 
 .PHONY: namespace
 namespace:
-ifneq ($(NAMESPACE,"production"))
+ifneq ($(NAMESPACE),"production")
 	kubectl create ns $(NAMESPACE)
 	kubectl get secret $(REGISTRY_SECRET) -o json --namespace default | sed 's/"namespace": "default"/"namespace": "$(NAMESPACE)"/g' | kubectl create -f -
 	kubectl patch sa default -p '{"imagePullSecrets": [{"name": "$(REGISTRY_SECRET)"}]}' --namespace $(NAMESPACE)
