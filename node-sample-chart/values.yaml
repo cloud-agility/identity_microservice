@@ -4,7 +4,7 @@ image:
   name: node_sample
   repository: mycluster.icp:8500/default
   tag: local
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 service:
   name: node-service
   type: NodePort

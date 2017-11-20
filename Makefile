@@ -8,7 +8,7 @@ DOCKER_IMAGE	= $(NAME):$(TAGS)
 
 ifndef REGISTRY
 # use minikube by default
-	REGISTRY	= 192.168.99.100:32767
+	REGISTRY	= 192.168.99.100:32767/default
 	REGISTRY_SECRET = $(shell kubectl get secret | grep default | awk '{print $$1}')
 endif
 
@@ -71,7 +71,7 @@ endif
 deploy: push namespace
 	echo ">> Use $(DEPLOY) to install $(NAME)-chart"
 	## Override the values.yaml with the target
-	$(DEPLOY) install $(NAME)-chart --set image.repository=$(REGISTRY) --namespace $(NAMESPACE) --name $(NAME) --wait
+	$(DEPLOY) install $(NAME)-chart --set image.repository=$(REGISTRY),image.name=$(NAME) --namespace $(NAMESPACE) --name $(NAME) --wait
 
 .PHONY: cleankube
 cleankube:
